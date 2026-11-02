@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Hace que la página se adapte al ancho del celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorador Rick and Morty</title>
+  <!-- Conectamos el archivo de estilos -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Encabezado de la página -->
+  <header class="encabezado">
+    <div class="encabezado-titulo">
+      <span class="portal" aria-hidden="true"></span>
+      <div>
+        <h1>Explorador Rick and Morty</h1>
+        <p>Busca personajes, filtra los resultados y guarda tus favoritos.</p>
+      </div>
+    </div>
+
+    <!-- EXTRA (Etapa 9): botón de modo oscuro/claro. Se agrega en el Pull Request. -->
+    <button type="button" id="btn-tema" class="btn-tema" aria-pressed="false">Modo oscuro</button>
+    <!-- FIN EXTRA -->
+  </header>
+
+  <main>
+
+    <!-- Buscador y filtros -->
+    <section class="controles" aria-label="Búsqueda y filtros">
+      <input type="search" id="buscador" placeholder="Buscar personaje por nombre..." aria-label="Buscar personaje por nombre">
+
+      <select id="filtro-estado" aria-label="Filtrar por estado">
+        <option value="">Todos los estados</option>
+        <option value="alive">Vivo</option>
+        <option value="dead">Muerto</option>
+        <option value="unknown">Desconocido</option>
+      </select>
+
+      <select id="filtro-especie" aria-label="Filtrar por especie">
+        <option value="">Todas las especies</option>
+        <option value="Human">Humano</option>
+        <option value="Alien">Alien</option>
+        <option value="Humanoid">Humanoide</option>
+        <option value="Robot">Robot</option>
+        <option value="Animal">Animal</option>
+        <option value="Mythological Creature">Criatura mitológica</option>
+        <option value="Cronenberg">Cronenberg</option>
+      </select>
+
+      <select id="filtro-genero" aria-label="Filtrar por género">
+        <option value="">Todos los géneros</option>
+        <option value="female">Femenino</option>
+        <option value="male">Masculino</option>
+        <option value="genderless">Sin género</option>
+        <option value="unknown">Desconocido</option>
+      </select>
+
+      <button type="button" id="btn-limpiar" class="btn-secundario">Limpiar filtros</button>
+    </section>
+
+    <!-- Aquí JavaScript mostrará avisos (cargando, sin resultados, errores) -->
+    <p id="mensaje" class="mensaje" role="status" aria-live="polite" hidden></p>
+
+    <!-- Aquí JavaScript insertará las tarjetas de personajes -->
+    <section aria-labelledby="titulo-personajes">
+      <h2 id="titulo-personajes">Personajes</h2>
+      <div id="lista-personajes" class="cuadricula"></div>
+
+      <!-- Paginación: la API entrega 20 personajes por página -->
+      <nav id="paginacion" class="paginacion" aria-label="Paginación" hidden>
+        <button type="button" id="btn-anterior" class="btn-secundario">Anterior</button>
+        <span id="info-pagina"></span>
+        <button type="button" id="btn-siguiente" class="btn-secundario">Siguiente</button>
+      </nav>
+    </section>
+
+    <!-- Aquí JavaScript insertará los personajes favoritos -->
+    <section aria-labelledby="titulo-favoritos">
+      <h2 id="titulo-favoritos">Mis favoritos</h2>
+      <div id="lista-favoritos" class="cuadricula"></div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <p>Proyecto escolar. Datos de <a href="https://rickandmortyapi.com" target="_blank" rel="noopener">Rick and Morty API</a>.</p>
+  </footer>
+
+  <!-- "defer" hace que el script se ejecute cuando el HTML ya cargó -->
+  <script src="script.js" defer></script>
+</body>
+</html>

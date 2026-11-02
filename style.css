@@ -1,0 +1,367 @@
+/* =====================================================
+   Explorador Rick and Morty - Estilos
+   Los colores están en variables para poder cambiar de tema fácilmente.
+   ===================================================== */
+
+/* ---------- Colores (tema claro por defecto) ---------- */
+:root {
+  --fondo: #F1F4EA;
+  --superficie: #FFFFFF;
+  --texto: #1B2B22;
+  --texto-suave: #4F6157;
+  --borde: #C9D4C3;
+  --acento: #1A7A43;
+  --acento-texto: #FFFFFF;
+  --vivo: #1A7A43;
+  --muerto: #B3261E;
+  --desconocido: #6B6F76;
+}
+
+/* EXTRA (Etapa 9): colores del modo oscuro. Se activa con data-tema="oscuro" */
+[data-tema="oscuro"] {
+  --fondo: #101B17;
+  --superficie: #18271F;
+  --texto: #E6EFE8;
+  --texto-suave: #9DB2A5;
+  --borde: #2C4136;
+  --acento: #7BDD8C;
+  --acento-texto: #0E1A13;
+  --vivo: #7BDD8C;
+  --muerto: #FF8A80;
+  --desconocido: #AAB2BA;
+}
+/* FIN EXTRA */
+
+/* ---------- Base ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  margin: 2rem 0 1rem;
+  font-size: 1.5rem;
+}
+
+a {
+  color: var(--acento);
+}
+
+:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 2px;
+}
+
+/* ---------- Encabezado ---------- */
+.encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.encabezado-titulo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.encabezado h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.encabezado p {
+  margin: 0.25rem 0 0;
+  color: var(--texto-suave);
+}
+
+/* Portal: lo único con movimiento en la página */
+.portal {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: conic-gradient(#6FE38A, #1A7A43, #B6F5C4, #2FB866, #6FE38A);
+  -webkit-mask: radial-gradient(circle, transparent 36%, #000 38%);
+  mask: radial-gradient(circle, transparent 36%, #000 38%);
+  animation: girar 12s linear infinite;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portal { animation: none; }
+}
+
+/* ---------- Botones ---------- */
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.btn-tema,
+.btn-secundario {
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: var(--superficie);
+  color: var(--texto);
+}
+
+.btn-secundario:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- Buscador y filtros ---------- */
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+}
+
+.controles input,
+.controles select {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: var(--fondo);
+  color: var(--texto);
+  font: inherit;
+}
+
+.controles input {
+  flex: 1 1 260px;
+}
+
+.controles select {
+  flex: 0 1 190px;
+}
+
+/* ---------- Mensajes (cargando, sin resultados, error) ---------- */
+.mensaje {
+  margin: 1rem 0 0;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--borde);
+  border-radius: 8px;
+  background: var(--superficie);
+}
+
+.mensaje[hidden] {
+  display: none;
+}
+
+.mensaje-info { border-left-color: var(--acento); }
+.mensaje-aviso { border-left-color: var(--desconocido); }
+.mensaje-error { border-left-color: var(--muerto); }
+
+/* ---------- Cuadrícula de fichas ---------- */
+.cuadricula {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.tarjeta {
+  overflow: hidden;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 20px 20px 12px 12px;
+}
+
+/* Foto grande con el nombre encima */
+.foto {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--borde);
+}
+
+.foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto-pie {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 3rem 0.9rem 0.8rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  color: #FFFFFF;
+}
+
+.foto-pie h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Estado: pastilla con un punto de color sobre la foto */
+.estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.estado::before {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: #CBD2D9;
+}
+
+.estado-alive::before { background: #6FE38A; }
+.estado-dead::before { background: #FF8A80; }
+
+/* Botón de favorito: estrella en la esquina de la foto */
+.btn-fav {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #FFFFFF;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.btn-fav.activo {
+  background: var(--acento);
+  color: var(--acento-texto);
+}
+
+/* Datos debajo de la foto: etiqueta pequeña y valor */
+.datos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 0.75rem;
+  margin: 0;
+  padding: 0.9rem;
+}
+
+.dato-ancho {
+  grid-column: 1 / -1;
+}
+
+.datos dt {
+  color: var(--texto-suave);
+  font-size: 0.8rem;
+}
+
+.datos dd {
+  margin: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.vacio {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 1rem;
+  border: 1px dashed var(--borde);
+  border-radius: 12px;
+  color: var(--texto-suave);
+}
+
+/* ---------- Paginación ---------- */
+.paginacion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.paginacion[hidden] {
+  display: none;
+}
+
+/* ---------- Pie de página ---------- */
+.pie {
+  padding: 1.5rem 1rem;
+  border-top: 1px solid var(--borde);
+  text-align: center;
+  color: var(--texto-suave);
+}
+
+.pie p {
+  margin: 0;
+}
+
+/* ---------- Adaptación a celulares ---------- */
+@media (max-width: 600px) {
+  .encabezado {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .encabezado h1 {
+    font-size: 1.5rem;
+  }
+
+  .portal {
+    width: 48px;
+    height: 48px;
+  }
+
+  .controles input,
+  .controles select,
+  .controles button {
+    flex: 1 1 100%;
+  }
+
+  /* Dos tarjetas por fila en pantallas pequeñas */
+  .cuadricula {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .cuadricula {
+    grid-template-columns: 1fr;
+  }
+}
