@@ -6,13 +6,13 @@ Aplicación web que consulta personajes de la [Rick and Morty API](https://ricka
 
 ## Integrantes
 
-- COMPLETAR: Carlos Alejandro Tec Uicab (tecuicabcarlosp1-create)
+-  Carlos Alejandro Tec Uicab (tecuicabcarlosp1-create)
 
 
 ## Enlaces
 
-- Repositorio: COMPLETAR (https://github.com/tecuicabcarlosp1-create/proyectoweb)
-- Aplicación publicada: COMPLETAR (https://USUARIO.github.io/proyecto-web-ia/)
+- Repositorio: (https://github.com/tecuicabcarlosp1-create/proyectoweb)
+- publicada:  (https://tecuicabcarlosp1-create.github.io/proyectoweb/)
 
 ## Descripción
 
@@ -65,7 +65,7 @@ COMPLETAR: explicar con sus palabras cómo funciona y qué cambiaron ustedes.
 
 ## Uso de inteligencia artificial
 
-**Herramienta usada:** COMPLETAR (ChatGPT Plus o Claude Pro)
+**Herramienta usada:** (ChatGPT Plus o Claude Pro)
 
 ### Tres prompts importantes
 
